@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy (Ubuntu)
+name: Build and deploy (web-app, Ubuntu)
 
 on:
   push:
@@ -37,27 +37,27 @@ jobs:
           name: web-app
           path: app.zip
 
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    environment:
-      name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   environment:
+  #     name: 'Production'
+  #     url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-    steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v2
-        with:
-          name: web-app
+  #   steps:
+  #     - name: Download artifact from build job
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: web-app
 
-      - name: Unzip artefact
-        run: unzip app.zip
+  #     - name: Unzip artefact
+  #       run: unzip app.zip
 
-      - name: Deploy to Azure Web App
-        id: deploy-to-webapp
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'github-actions-examples-linux'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZURE_APPSERVICE_PUBLISHPROFILE_LINUX }}
-          package: home/runner/.dotnet/app/
+  #     - name: Deploy to Azure Web App
+  #       id: deploy-to-webapp
+  #       uses: azure/webapps-deploy@v2
+  #       with:
+  #         app-name: 'github-actions-examples-linux'
+  #         slot-name: 'Production'
+  #         publish-profile: ${{ secrets.AZURE_APPSERVICE_PUBLISHPROFILE_LINUX }}
+  #         package: home/runner/.dotnet/app/
