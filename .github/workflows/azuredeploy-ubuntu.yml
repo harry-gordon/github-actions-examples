@@ -26,7 +26,7 @@ jobs:
         run: dotnet build ./HarryGordon.GithubActionsExamples.WebApp/HarryGordon.GithubActionsExamples.WebApp.csproj --runtime linux-x64 --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/app
+        run: dotnet publish ./HarryGordon.GithubActionsExamples.WebApp/HarryGordon.GithubActionsExamples.WebApp.csproj -c Release -o ${{env.DOTNET_ROOT}}/app
         
       - name: Zip publish folder
         run: zip -r app.zip ${{env.DOTNET_ROOT}}/app
