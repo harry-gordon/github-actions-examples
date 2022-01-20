@@ -23,10 +23,10 @@ jobs:
           include-prerelease: true
 
       - name: Build with dotnet
-        run: dotnet build .\HarryGordon.GithubActionsExamples.Umbraco\HarryGordon.GithubActionsExamples.Umbraco.csproj --runtime linux-x64 --configuration Release
+        run: dotnet build .\HarryGordon.GithubActionsExamples.Umbraco9\HarryGordon.GithubActionsExamples.Umbraco9.csproj --runtime linux-x64 --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish .\HarryGordon.GithubActionsExamples.Umbraco\HarryGordon.GithubActionsExamples.Umbraco.csproj-c Release -o ${{env.DOTNET_ROOT}}/app
+        run: dotnet publish .\HarryGordon.GithubActionsExamples.Umbraco9\HarryGordon.GithubActionsExamples.Umbraco9.csproj-c Release -o ${{env.DOTNET_ROOT}}/app
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
