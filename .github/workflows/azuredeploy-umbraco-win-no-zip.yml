@@ -23,7 +23,7 @@ jobs:
           include-prerelease: true
 
       - name: Test
-        run: echo Test 7
+        run: echo Test 8
 
       - name: Build with dotnet
         run: dotnet build .\HarryGordon.GithubActionsExamples.Umbraco9\HarryGordon.GithubActionsExamples.Umbraco9.csproj --runtime linux-x64 --configuration Release
