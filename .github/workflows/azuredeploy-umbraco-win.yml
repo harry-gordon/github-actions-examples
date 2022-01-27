@@ -33,3 +33,28 @@ jobs:
         with:
           name: umbraco-web-app
           path: app.zip
+
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: web-app
+
+      - name: Unzip publish folder
+        run: 7z x app.zip
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'github-actions-examples-linux'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZURE_APPSERVICE_PUBLISHPROFILE_LINUX }}
+          package: app
