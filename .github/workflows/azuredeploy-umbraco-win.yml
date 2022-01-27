@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build only (Umbraco, Windows)
+name: Build and deploy (Umbraco, Windows)
 
 on:
   workflow_dispatch:
@@ -39,13 +39,13 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      url: ''
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: web-app
+          name: umbraco-web-app
 
       - name: Unzip publish folder
         run: 7z x app.zip
