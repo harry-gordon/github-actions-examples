@@ -4,9 +4,6 @@
 name: Build only (Umbraco, Windows)
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
